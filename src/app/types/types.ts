@@ -34,3 +34,13 @@ export interface Thread {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface RiskItem {
+  title: string;
+  risk_level: "Low" | "Medium" | "High";
+  identified_risks: string[];
+  potential_impact: string;
+  likelihood: "Low" | "Medium" | "High";
+  mitigation_recommendations: string[];
+  is_mitigated: boolean;
+}

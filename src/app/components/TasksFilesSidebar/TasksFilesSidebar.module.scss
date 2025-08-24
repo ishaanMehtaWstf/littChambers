@@ -103,8 +103,23 @@
   color: var(--color-text-tertiary);
 
   p {
-    margin: 0;
+    margin: 0 0 $spacing-md 0;
     font-size: $font-size-sm;
+  }
+}
+
+.analysisButton {
+  background: var(--color-primary);
+  color: white;
+  font-size: $font-size-sm;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $radius-md;
+  border: none;
+  cursor: pointer;
+  transition: background-color $transition-base;
+
+  &:hover {
+    background: var(--color-secondary);
   }
 }
 
@@ -204,4 +219,241 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+// Risks Styles
+.riskList {
+  padding: $spacing-md;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.riskCard {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: $radius-md;
+  transition: opacity $transition-base;
+  position: relative;
+  overflow: hidden;
+}
+
+.riskCardResolved {
+  opacity: 0.6;
+  filter: grayscale(0.3);
+}
+
+.resolvedRibbon {
+  position: absolute;
+  top: 8px;
+  right: -35px;
+  transform: rotate(35deg);
+  background: rgba(16, 185, 129, 0.9);
+  color: white;
+  padding: 2px 40px;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  z-index: 2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.titleBanner {
+  padding: $spacing-md $spacing-md $spacing-sm;
+  margin-bottom: $spacing-sm;
+  position: relative;
+}
+
+.titleLow {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.05) 100%);
+  border-bottom: 2px solid rgba(16, 185, 129, 0.3);
+}
+
+.titleMedium {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0.05) 100%);
+  border-bottom: 2px solid rgba(245, 158, 11, 0.3);
+}
+
+.titleHigh {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(239, 68, 68, 0.05) 100%);
+  border-bottom: 2px solid rgba(239, 68, 68, 0.3);
+}
+
+.riskTitle {
+  margin: 0;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  color: var(--color-text-primary);
+  line-height: $line-height-tight;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.riskTitleResolved {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.riskSection {
+  padding: 0 $spacing-md $spacing-sm;
+  
+  &:last-of-type {
+    padding-bottom: $spacing-md;
+  }
+}
+
+.sectionTitle {
+  font-size: $font-size-xs;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  font-weight: $font-weight-semibold;
+  margin-bottom: $spacing-xs;
+  letter-spacing: 0.5px;
+}
+
+.cardGrid {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.riskItemCard {
+  padding: $spacing-sm;
+  border-radius: $radius-sm;
+  font-size: $font-size-sm;
+  line-height: $line-height-normal;
+  color: var(--color-text-primary);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  border: 1px solid transparent;
+  
+  &.titleLow {
+    background: rgba(16, 185, 129, 0.08);
+    border-color: rgba(16, 185, 129, 0.2);
+  }
+  
+  &.titleMedium {
+    background: rgba(245, 158, 11, 0.08);
+    border-color: rgba(245, 158, 11, 0.2);
+  }
+  
+  &.titleHigh {
+    background: rgba(239, 68, 68, 0.08);
+    border-color: rgba(239, 68, 68, 0.2);
+  }
+}
+
+.impactCard {
+  padding: $spacing-sm;
+  border-radius: $radius-sm;
+  font-size: $font-size-sm;
+  line-height: $line-height-normal;
+  color: var(--color-text-primary);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  background: rgba(139, 69, 193, 0.08);
+  border: 1px solid rgba(139, 69, 193, 0.2);
+}
+
+.mitigationCard {
+  padding: $spacing-sm;
+  border-radius: $radius-sm;
+  font-size: $font-size-sm;
+  line-height: $line-height-normal;
+  color: var(--color-text-primary);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  
+  li {
+    position: relative;
+    padding-left: $spacing-sm;
+    font-size: $font-size-sm;
+    line-height: $line-height-normal;
+    color: var(--color-text-primary);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    
+    &:before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--color-text-tertiary);
+      font-weight: bold;
+    }
+  }
+}
+
+.paragraph {
+  margin: 0;
+  font-size: $font-size-sm;
+  color: var(--color-text-primary);
+  line-height: $line-height-normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.likelihoodSection {
+  padding: $spacing-sm $spacing-md $spacing-md;
+  background: var(--color-border-light);
+  border-top: 1px solid var(--color-border);
+  margin-top: $spacing-sm;
+}
+
+.likelihoodBar {
+  position: relative;
+  height: 8px;
+  width: 100%;
+  border-radius: $radius-full;
+  background: linear-gradient(
+    90deg,
+    rgba(16, 185, 129, 0.8) 0%,
+    rgba(245, 158, 11, 0.9) 50%,
+    rgba(239, 68, 68, 0.9) 100%
+  );
+  margin-top: $spacing-xs;
+}
+
+.likelihoodIndicator {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  border-radius: $radius-full;
+  background: white;
+  border: 2px solid var(--color-text-primary);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.cardFooter {
+  padding: $spacing-sm $spacing-md $spacing-md;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mitigateButton {
+  background: var(--color-success);
+  color: white;
+  font-size: $font-size-xs;
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $radius-sm;
+  border: none;
+  cursor: pointer;
+  transition: background-color $transition-base;
+
+  &:hover {
+    background: rgba(16, 185, 129, 0.8);
+  }
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import { useQueryState } from "nuqs";
 import { ChatInterface } from "./components/ChatInterface/ChatInterface";
 import { TasksFilesSidebar } from "./components/TasksFilesSidebar/TasksFilesSidebar";
@@ -22,6 +22,7 @@ export default function HomePage() {
   const [files, setFiles] = useState<Record<string, string>>({});
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [isLoadingThreadState, setIsLoadingThreadState] = useState(false);
+  const sendMessageRef = useRef<((message: string) => void) | null>(null);
 
   const toggleSidebar = useCallback(() => {
     setSidebarCollapsed((prev) => !prev);
@@ -75,6 +76,7 @@ export default function HomePage() {
         onFileClick={setSelectedFile}
         collapsed={sidebarCollapsed}
         onToggleCollapse={toggleSidebar}
+        onSendMessage={(message: string) => sendMessageRef.current?.(message)}
       />
       <div className={styles.mainContent}>
         <ChatInterface
@@ -86,6 +88,9 @@ export default function HomePage() {
           onFilesUpdate={setFiles}
           onNewThread={handleNewThread}
           isLoadingThreadState={isLoadingThreadState}
+          onSendMessageRef={(sendMessage) => {
+            sendMessageRef.current = sendMessage;
+          }}
         />
         {selectedSubAgent && (
           <SubAgentPanel

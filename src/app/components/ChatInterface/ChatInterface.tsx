@@ -30,6 +30,7 @@ interface ChatInterfaceProps {
   onFilesUpdate: (files: Record<string, string>) => void;
   onNewThread: () => void;
   isLoadingThreadState: boolean;
+  onSendMessageRef?: (sendMessage: (message: string) => void) => void;
 }
 
 export const ChatInterface = React.memo<ChatInterfaceProps>(
@@ -42,6 +43,7 @@ export const ChatInterface = React.memo<ChatInterfaceProps>(
     onFilesUpdate,
     onNewThread,
     isLoadingThreadState,
+    onSendMessageRef,
   }) => {
     const [input, setInput] = useState("");
     const [isThreadHistoryOpen, setIsThreadHistoryOpen] = useState(false);
@@ -53,6 +55,11 @@ export const ChatInterface = React.memo<ChatInterfaceProps>(
       onTodosUpdate,
       onFilesUpdate,
     );
+
+    // Expose sendMessage function to parent
+    useEffect(() => {
+      onSendMessageRef?.(sendMessage);
+    }, [sendMessage, onSendMessageRef]);
 
     useEffect(() => {
       messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
